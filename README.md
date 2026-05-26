@@ -19,4 +19,4 @@ API REST robusta para la gestión y control de inventarios construida con **Spri
 
 1. Clonar el repositorio:
    ```bash
-   git clone [https://github.com/tu-usuario/inventory-management-api.git](https://github.com/tu-usuario/inventory-management-api.git)
+   git clone [https://github.com/saulsotodev/inventory-management-api.git](https://github.com/saulsotodev/inventory-management-api.git)
