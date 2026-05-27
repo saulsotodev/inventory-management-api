@@ -46,4 +46,4 @@ La API cuenta con documentación automatizada e interactiva bajo el estándar **
 ### Pasos:
 1. Clonar el repositorio:
    ```bash
-   git clone [https://github.com/saulsotodev/inventory-management-api.git](https://github.com/saulsotodev/inventory-management-api.git)
+   git clone https://github.com/saulsotodev/inventory-management-api.git
