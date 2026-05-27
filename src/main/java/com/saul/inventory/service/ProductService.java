@@ -2,6 +2,7 @@ package com.saul.inventory.service;
 
 import com.saul.inventory.entity.Product;
 import com.saul.inventory.dto.ProductRequestDTO;
+import com.saul.inventory.exception.ResourceNotFoundException;
 import com.saul.inventory.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -17,6 +18,12 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    // 🔍 NUEVO MÉTODO: Busca un producto específico por ID
+    public Product getProductById(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("El producto con el ID " + id + " no existe en el inventario."));
     }
 
     public Product createProduct(ProductRequestDTO dto) {
@@ -35,13 +42,14 @@ public class ProductService {
                     existingProduct.setPrice(dto.getPrice());
                     return productRepository.save(existingProduct);
                 })
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado con el ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No se puede actualizar. El producto con el ID " + id + " no existe."));
     }
 
     public void deleteProduct(Long id) {
         if (!productRepository.existsById(id)) {
-            throw new RuntimeException("No se puede eliminar. Producto no encontrado con el ID: " + id);
+            throw new ResourceNotFoundException("No se puede eliminar. El producto con el ID " + id + " no existe.");
         }
         productRepository.deleteById(id);
     }
+
 }
