@@ -1,22 +1,49 @@
-# Inventory Management API 
+# Inventory Management API
 
-API REST robusta para la gestión y control de inventarios construida con **Spring Boot** y **Java 21**. Diseñada bajo buenas prácticas de arquitectura limpia, desacoplamiento de capas mediante DTOs y persistencia relacional.
+Una API REST profesional desarrollada con **Java 21** y **Spring Boot 4** para la gestión eficiente de inventarios de productos. Este proyecto fue diseñado aplicando buenas prácticas de desarrollo de software, separación de responsabilidades y manejo controlado de errores corporativos.
 
-## Tecnologías y Decisiones de Arquitectura
+---
 
-- **Java 21 & Spring Boot**: Uso de características modernas de la JVM.
-- **Spring Data JPA & Hibernate**: Abstracción de datos y mapeo objeto-relacional eficiente.
-- **MySQL 8.x**: Motor de base de datos relacional robusto.
-- **Validación de Capas (Jakarta Validation)**: Restricciones explícitas a nivel DTO para evitar la corrupción de datos.
+## Tecnologías Utilizadas
 
-## Prácticas de Ingeniería Aplicadas
+* **Lenguaje:** Java 21 (LTS)
+* **Framework:** Spring Boot 4.0.6
+* **Base de Datos:** MySQL (Persistencia en entorno de producción)
+* **Documentación:** Springdoc OpenAPI / Swagger UI
+* **Gestor de Dependencias:** Maven
+* **Herramientas de Productividad:** Lombok & Jakarta Validation
 
-- **Abstracción mediante DTOs**: Aislamiento total de las entidades JPA del exterior, protegiendo el modelo de dominio.
-- **Precisión Financiera**: Manejo de valores monetarios con `BigDecimal` para mitigar errores de redondeo binario.
-- **Inyección de Dependencias por Constructor**: Acoplamiento débil y alta testabilidad de los componentes de servicio.
+---
 
-## Instalación y Despliegue
+## Arquitectura y Buenas Prácticas Aplicadas
 
+Para garantizar que el sistema sea mantenible y escalable, implementé los siguientes patrones arquitectónicos:
+
+1. **Patrón DTO (Data Transfer Object):** Desacoplamiento total entre las entidades de la base de datos (`Product`) y las solicitudes del cliente (`ProductRequestDTO`), protegiendo la integridad de los datos.
+2. **Arquitectura en Capas:** Separación limpia de responsabilidades:
+   * **Controlador (Controller):** Expone las rutas HTTP de la API REST.
+   * **Servicio (Service):** Contiene el 100% de la lógica de negocio.
+   * **Repositorio (Repository):** Abstracción de las consultas a la base de datos mediante Spring Data JPA.
+3. **Escudo Global de Excepciones:** Implementación de un `@RestControllerAdvice` para interceptar errores en tiempo de ejecución. Mapea de forma limpia las validaciones fallidas (`400 Bad Request`) y recursos no encontrados (`404 Not Found`) en una estructura JSON estandarizada (`ErrorResponseDTO`).
+
+---
+
+## Documentación Interactiva (Swagger UI)
+
+La API cuenta con documentación automatizada e interactiva bajo el estándar **OpenAPI**. Puedes visualizar, explorar y probar todos los endpoints del sistema directamente desde el navegador web sin necesidad de clientes externos como Postman.
+
+* **Ruta de acceso en desarrollo:** `http://localhost:8080/swagger-ui.html`
+
+---
+
+## Cómo Ejecutar el Proyecto Localmente
+
+### Requisitos Previos:
+* Java 21 JDK instalado.
+* Maven instalado.
+* Servidor MySQL activo.
+
+### Pasos:
 1. Clonar el repositorio:
    ```bash
    git clone [https://github.com/saulsotodev/inventory-management-api.git](https://github.com/saulsotodev/inventory-management-api.git)
